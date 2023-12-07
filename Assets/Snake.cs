@@ -75,18 +75,12 @@ public class Snake : MonoBehaviour
             transform.rotation = Quaternion.Euler(Vector3.zero);
         }
 
-        public void Quitgame()
-        {
-            Application.Quit();
-        }
-
         private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Food") {
             Grow();
         } else if (other.tag == "Obstacle") {
             ResetState();
-            Quitgame();
         }
         
     }
