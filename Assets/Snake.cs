@@ -16,15 +16,27 @@ public class Snake : MonoBehaviour
         ResetState();
     }
 
+    [SerializeField] private AudioSource turningSoundEffect;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W)) {
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            turningSoundEffect.Play();
             _direction = Vector2.up;
-        } else if (Input.GetKeyDown(KeyCode.S)) {
+        } 
+        else if (Input.GetKeyDown(KeyCode.S)) 
+        {
+            turningSoundEffect.Play();
             _direction = Vector2.down;
-        } else if (Input.GetKeyDown(KeyCode.A)) {
+        }
+        else if (Input.GetKeyDown(KeyCode.A)) 
+        {
+            turningSoundEffect.Play();
             _direction = Vector2.left;
-        } else if (Input.GetKeyDown(KeyCode.D)) {
+        }
+        else if (Input.GetKeyDown(KeyCode.D)) 
+        {
+            turningSoundEffect.Play();
             _direction = Vector2.right;
         }
 
@@ -75,13 +87,20 @@ public class Snake : MonoBehaviour
             transform.rotation = Quaternion.Euler(Vector3.zero);
         }
 
+    [SerializeField] private AudioSource deathSoundEffect;
+
         private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Food") {
             Grow();
         } else if (other.tag == "Obstacle") {
+            deathSoundEffect.Play();
             ResetState();
+            ScoreManager.instance.ResetScore();
         }
         
     }
+    
+     public ScoreManager scoreManager;
+     
 }

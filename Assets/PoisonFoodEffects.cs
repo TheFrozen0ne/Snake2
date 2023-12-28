@@ -1,12 +1,27 @@
 using UnityEngine;
+using System.Collections;
+using System.Linq;
+using System.Collections.Generic;
 
-public class Food : MonoBehaviour
+public class PoisonFoodEffects : MonoBehaviour
 {
 
     public BoxCollider2D gridArea;
 
+    private FunctionTimer functionTimer;
+    
     private void Start()
     {
+        RandomizePosition();
+        functionTimer = new FunctionTimer(Respawn, 3f);
+    }
+    private void Update()
+    {
+        functionTimer.Update();
+    }
+    private void Respawn()
+    {
+        new FunctionTimer(Respawn, 3f);
         RandomizePosition();
     }
 
@@ -21,17 +36,4 @@ public class Food : MonoBehaviour
          
     }
 
-    [SerializeField] private AudioSource foodSoundEffect;
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        ScoreManager.instance.AddPoint();
-
-        if (other.tag == "Player") 
-        {
-            foodSoundEffect.Play();
-            RandomizePosition();
-        }
-        
-    }
 }

@@ -34,8 +34,7 @@ public class ScoreManager : MonoBehaviour
             PlayerPrefs.SetInt("highscore", score);
     
     }
-
-    // ... (other variables)
+    
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -49,7 +48,14 @@ public class ScoreManager : MonoBehaviour
             {
                 Debug.Log("Collision detected with: " + collision.gameObject.name);
             }
-        }
+    
+    }
+
+    public void ResetScore()
+    {
+        score = 0;
+        scoreText.text = "Score: " + score.ToString();
+    }
 }
 
 
