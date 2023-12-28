@@ -49,7 +49,7 @@ public class PauseMenuSwitcher : MonoBehaviour
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(0);
         isPaused = false;
     }
 }
